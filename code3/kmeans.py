@@ -279,13 +279,13 @@ for k in range(n_clusters):
 	ent[k]=e
 
 total = len(X)
-print "total"
-print total
-print n_clusters
+#print "total"
+#print total
+#print n_clusters
 
 mean = total/n_clusters
-print "mean"
-print mean
+#print "mean"
+#print mean
 sum_v = 0
 
 for key in size_cl:
@@ -296,12 +296,12 @@ for key in size_cl:
 
 
 s_d=(math.sqrt(sum_v/n_clusters))
-print "s_d"
-print s_d
+#print "s_d"
+#print s_d
 skew= (math.sqrt(sum_v/n_clusters))/mean
 
-print "skew"
-print skew
+#print "skew"
+#print skew
 
 
 print '\n'

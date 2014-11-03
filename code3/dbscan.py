@@ -193,22 +193,19 @@ for k in range(n_clusters_):
 
 total = len(X)
 mean = total/n_clusters_
-print "mean"
-print mean
+#print "mean"
+#print mean
 sum_v = 0
-t = 
 for key in size_cl:
 	#print "size"
-	t = t + size_cl.get(key)
 	#print size_cl.get(key)
 	sum_v = sum_v + ((size_cl.get(key) - mean) ** 2)
 	
-print "total"
-print t
+
 skew= (math.sqrt(sum_v/n_clusters_))/mean
 
-print "skew"
-print skew
+#print "skew"
+#print skew
 
 
 print '\n'

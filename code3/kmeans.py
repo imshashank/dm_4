@@ -89,7 +89,7 @@ centers=np.random.randint(size=(k,2),low=-10,high=10)
 n_clusters = len(centers)
 
 
-k_means = KMeans(init='k-means++', n_clusters=n_clusters,max_iter=100,n_jobs=2)
+k_means = KMeans(init='k-means++', n_clusters=n_clusters,max_iter=300,verbose=True)
 #k_means = MiniBatchKMeans(init='k-means++', n_clusters=n_clusters, batch_size=batch_size,verbose=True)
 t0 = time.time()
 k_means.fit(X)
@@ -99,7 +99,7 @@ k_means_cluster_centers = k_means.cluster_centers_
 k_means_labels_unique = np.unique(k_means_labels)
 
 
-mbk = MiniBatchKMeans(init='k-means++', n_clusters=n_clusters, batch_size=batch_size)
+mbk = MiniBatchKMeans(init='k-means++', n_clusters=n_clusters, batch_size=batch_size,verbose=True)
 t0 = time.time()
 mbk.fit(X)
 t_mini_batch = time.time() - t0
@@ -185,7 +185,44 @@ for k in range(n_clusters):
 
 #rint np.amax(k_means.labels_)
 #entropy
+'''
+i = 0
+size_cl_m={}
+for k in range(n_clusters):
+	i =0
+	temp_cl = {}
+	len_c = 0
+	for x in mbk_means_labels:
+		#cluster
+		if x == k:
+			
+			len_c =len_c  +1
+		#print i
+		i = i+1
 
+	size_cl_m[k]=len_c
+	total_m = len_c
+
+total = len(X)	
+mean = total_m/n_clusters
+print "mean"
+print mean
+sum_v = 0
+t = 0
+for key in size_cl_m:
+	#print "size"
+	t = t + size_cl_m.get(key)
+	#print size_cl.get(key)
+	sum_v = sum_v + ((size_cl_m.get(key) - mean) ** 2)
+	
+print "total"
+print t
+skew= (math.sqrt(sum_v/n_clusters))/mean
+
+print "skew"
+print skew
+
+'''
 #n_clusters
 #labels
 #docs_labels
@@ -241,9 +278,32 @@ for k in range(n_clusters):
 #	print e
 	ent[k]=e
 
-
-
 total = len(X)
+print "total"
+print total
+print n_clusters
+
+mean = total/n_clusters
+print "mean"
+print mean
+sum_v = 0
+
+for key in size_cl:
+	
+	#print "size"
+	#print size_cl.get(key)
+	sum_v = sum_v + ((size_cl.get(key) - mean) ** 2)
+
+
+s_d=(math.sqrt(sum_v/n_clusters))
+print "s_d"
+print s_d
+skew= (math.sqrt(sum_v/n_clusters))/mean
+
+print "skew"
+print skew
+
+
 print '\n'
 #print "total"
 #print total
@@ -253,6 +313,7 @@ for keys in ent:
 	#print keys
 	#print size_cl.get(keys)
 	fin_e = fin_e + (size_cl.get(keys)/total)*(ent.get(keys))
+
 print "number of clusters"
 print n_clusters
 print "Time to Cluster"
@@ -263,7 +324,9 @@ print fin_e
 '''
 ValueError: n_samples=1463 should be >= n_clusters=1500
 '''
-		
+#skewness
+#->s.d./mean
+#find mean
 
 #hashtable labels has all labels and count of docs in it
 #for each cluster find 

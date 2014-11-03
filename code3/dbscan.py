@@ -193,6 +193,21 @@ for k in range(n_clusters_):
 
 
 
+mean = total/n_clusters_
+print "mean"
+print mean
+sum_v = 0
+for key in size_cl:
+	#print "size"
+	#print size_cl.get(key)
+	sum_v = sum_v + ((size_cl.get(key) - mean) ** 2)
+	
+
+skew= (math.sqrt(sum_v/n_clusters_))/mean
+
+print "skew"
+print skew
+
 total = len(X)
 print '\n'
 #print "total"
